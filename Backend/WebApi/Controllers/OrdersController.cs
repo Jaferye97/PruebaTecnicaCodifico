@@ -15,12 +15,9 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetClientOrders(int id)
         {
             var orders = await _getOrdersByCustIdUseCase.ExecuteAsync(id);
-
-            //if (estudiante == null)
-            //    return NotFound();
 
             return Ok(orders);
         }
