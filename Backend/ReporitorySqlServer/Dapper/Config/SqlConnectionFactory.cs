@@ -10,7 +10,7 @@ namespace ReporitorySqlServer.Dapper.Config
 
         public SqlConnectionFactory(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration.GetConnectionString("ConexionDb");
         }
 
         public IDbConnection CreateConnection()
