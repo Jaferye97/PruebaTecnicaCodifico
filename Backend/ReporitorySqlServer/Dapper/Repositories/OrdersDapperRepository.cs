@@ -1,11 +1,12 @@
 ﻿using System.Data;
+using Application.Ports;
 using Dapper;
 using Domain.Model.Orders;
 using ReporitorySqlServer.Dapper.Config;
 
 namespace ReporitorySqlServer.Dapper.Repositories
 {
-    public class OrdersDapperRepository
+    public class OrdersDapperRepository : IOrdersRepositorySqlServerPort
     {
         private readonly SqlConnectionFactory _connectionFactory;
 
@@ -14,7 +15,7 @@ namespace ReporitorySqlServer.Dapper.Repositories
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<IEnumerable<OrdersReadModel>> GetAsync(int id)
+        public async Task<IEnumerable<OrdersReadModel>> GetOrdersByCustIdAsync(int id)
         {
             using IDbConnection db = _connectionFactory.CreateConnection();
 
