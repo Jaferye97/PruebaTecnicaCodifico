@@ -1,4 +1,5 @@
 using Application.Ports;
+using Application.UseCases.Employees;
 using Application.UseCases.Orders;
 using Microsoft.EntityFrameworkCore;
 using ReporitorySqlServer.Context;
@@ -22,7 +23,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<SqlConnectionFactory>();
 
 builder.Services.AddScoped<GetOrdersByCustIdUseCase>();
+builder.Services.AddScoped<GetAllEmployeesUseCase>();
+
 builder.Services.AddScoped<IOrdersRepositorySqlServerPort, OrdersDapperRepository>();
+builder.Services.AddScoped<IEmployeesRepositorySqlServerPort, EmployeesDapperRepository>();
 
 var app = builder.Build();
 
