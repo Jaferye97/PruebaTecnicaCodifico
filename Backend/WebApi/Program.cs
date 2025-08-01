@@ -2,6 +2,7 @@ using Application.Ports;
 using Application.UseCases.Employees;
 using Application.UseCases.Orders;
 using Application.UseCases.Products;
+using Application.UseCases.Shippers;
 using Microsoft.EntityFrameworkCore;
 using ReporitorySqlServer.Context;
 using ReporitorySqlServer.Dapper.Config;
@@ -26,10 +27,12 @@ builder.Services.AddSingleton<SqlConnectionFactory>();
 builder.Services.AddScoped<GetOrdersByCustIdUseCase>();
 builder.Services.AddScoped<GetAllEmployeesUseCase>();
 builder.Services.AddScoped<GetAllProductsUseCase>();
+builder.Services.AddScoped<GetAllShippersUseCase>();
 
 builder.Services.AddScoped<IOrdersRepositorySqlServerPort, OrdersDapperRepository>();
 builder.Services.AddScoped<IEmployeesRepositorySqlServerPort, EmployeesDapperRepository>();
 builder.Services.AddScoped<IProductsRepositorySqlServerPort, ProductsDapperRepository>();
+builder.Services.AddScoped<IShippersRepositorySqlServerPort, ShipperidDapperRepository>();
 
 var app = builder.Build();
 
