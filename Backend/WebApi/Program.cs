@@ -1,4 +1,5 @@
 using Application.Ports;
+using Application.UseCases.Customers;
 using Application.UseCases.Employees;
 using Application.UseCases.Orders;
 using Application.UseCases.Products;
@@ -28,11 +29,13 @@ builder.Services.AddScoped<GetOrdersByCustIdUseCase>();
 builder.Services.AddScoped<GetAllEmployeesUseCase>();
 builder.Services.AddScoped<GetAllProductsUseCase>();
 builder.Services.AddScoped<GetAllShippersUseCase>();
+builder.Services.AddScoped<GetSalesDatePredictionUseCase>();
 
 builder.Services.AddScoped<IOrdersRepositorySqlServerPort, OrdersDapperRepository>();
 builder.Services.AddScoped<IEmployeesRepositorySqlServerPort, EmployeesDapperRepository>();
 builder.Services.AddScoped<IProductsRepositorySqlServerPort, ProductsDapperRepository>();
 builder.Services.AddScoped<IShippersRepositorySqlServerPort, ShipperidDapperRepository>();
+builder.Services.AddScoped<ICustomersRepositorySqlServerPort, CustomersDapperRepository>();
 
 var app = builder.Build();
 
