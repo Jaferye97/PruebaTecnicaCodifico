@@ -38,6 +38,17 @@ builder.Services.AddScoped<IProductsRepositorySqlServerPort, ProductsDapperRepos
 builder.Services.AddScoped<IShippersRepositorySqlServerPort, ShipperidDapperRepository>();
 builder.Services.AddScoped<ICustomersRepositorySqlServerPort, CustomersDapperRepository>();
 
+// Configurar política de CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularClient", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -48,6 +59,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAngularClient");
 
 app.UseAuthorization();
 
