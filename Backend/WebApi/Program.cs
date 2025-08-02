@@ -26,6 +26,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<SqlConnectionFactory>();
 
 builder.Services.AddScoped<GetOrdersByCustIdUseCase>();
+builder.Services.AddScoped<NewOrderWithDetailUseCase>();
 builder.Services.AddScoped<GetAllEmployeesUseCase>();
 builder.Services.AddScoped<GetAllProductsUseCase>();
 builder.Services.AddScoped<GetAllShippersUseCase>();
