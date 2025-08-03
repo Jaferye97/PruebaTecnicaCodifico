@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -15,7 +15,10 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild, AfterViewInit } from '@angular/core';
 
-import { SalesDatePredictionService } from '../services/salesDatePrediction.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CustomerOrdersModalComponent } from '../components/customer-orders-modal/customer-orders-modal.component';
+
+import { CustomersService } from '../services/salesDatePrediction.service';
 
 import { CustomerSalesDatePrediction } from '../interfaces/CustomerSalesDatePrediction';
 
@@ -38,7 +41,7 @@ import { CustomerSalesDatePrediction } from '../interfaces/CustomerSalesDatePred
   templateUrl: './sales-date-prediction.component.html',
   styleUrls: ['./sales-date-prediction.component.css'],
 })
-export class SalesDatePredictionComponent {
+export class SalesDatePredictionComponent implements OnInit {
   loadingSearch = false;
   customers: MatTableDataSource<CustomerSalesDatePrediction> =
     new MatTableDataSource();
@@ -56,7 +59,8 @@ export class SalesDatePredictionComponent {
 
   constructor(
     private fb: FormBuilder,
-    private service: SalesDatePredictionService
+    private service: CustomersService,
+    private dialog: MatDialog
   ) {
     this.form = this.fb.group({
       search: [''],
@@ -86,5 +90,12 @@ export class SalesDatePredictionComponent {
   onSearch(): void {
     const searchTerm = this.form.get('search')?.value;
     this.applyFilter(searchTerm);
+  }
+
+  openOrders(customerId: string, customerName: string) {
+    this.dialog.open(CustomerOrdersModalComponent, {
+      width: '90%',
+      data: { customerId, customerName },
+    });
   }
 }

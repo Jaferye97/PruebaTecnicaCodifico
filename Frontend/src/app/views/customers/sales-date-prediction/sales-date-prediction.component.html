@@ -56,8 +56,13 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <span class="text-danger fw-bold me-3 cursor-pointer">VIEW ORDERS</span>
-      <span class="text-success fw-bold cursor-pointer">NEW ORDER</span>
+      <button
+        class="soft-btn text-danger fw-bold me-3"
+        (click)="openOrders(element.custId, element.companyName)"
+      >
+        VIEW ORDERS
+      </button>
+      <button class="soft-btn text-success fw-bold">NEW ORDER</button>
     </td>
   </ng-container>
 
