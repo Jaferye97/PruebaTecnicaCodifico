@@ -15,13 +15,20 @@ namespace ReporitorySqlServer.Dapper.Repositories
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<IEnumerable<CustomersReadSalesDatePredictionModel>> GetGetSalesDatePredictionAsync()
+        public async Task<IEnumerable<CustomersReadSalesDatePredictionModel>> GetSalesDatePredictionAsync(string? companyName = null)
         {
             using IDbConnection db = _connectionFactory.CreateConnection();
 
             const string procedure = "sp_GetSalesDatePrediction";
 
-            return await db.QueryAsync<CustomersReadSalesDatePredictionModel>(procedure, commandType: CommandType.StoredProcedure);
+            var parameters = new DynamicParameters();
+            parameters.Add("@FilterCompanyName", companyName, DbType.String);
+
+            return await db.QueryAsync<CustomersReadSalesDatePredictionModel>(
+                procedure,
+                parameters,
+                commandType: CommandType.StoredProcedure
+            );
         }
     }
 }

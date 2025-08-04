@@ -12,9 +12,9 @@ namespace Application.UseCases.Customers
             _repository = repository;
         }
 
-        public async Task<IEnumerable<CustomersReadSalesDatePredictionModel>> ExecuteAsync()
+        public async Task<IEnumerable<CustomersReadSalesDatePredictionModel>> ExecuteAsync(string? companyName = null)
         {
-            return await _repository.GetGetSalesDatePredictionAsync();
+            return await _repository.GetSalesDatePredictionAsync(companyName);
         }
     }
 }

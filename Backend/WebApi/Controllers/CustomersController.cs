@@ -1,5 +1,4 @@
 ﻿using Application.UseCases.Customers;
-using Application.UseCases.Employees;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -15,12 +14,11 @@ namespace WebApi.Controllers
             _getSalesDatePredictionUseCase = getSalesDatePredictionUseCase;
         }
 
-        [HttpGet()]
-        public async Task<IActionResult> GetEmployees()
+        [HttpGet("GetSalesDatePrediction")]
+        public async Task<IActionResult> GetSalesDatePrediction([FromQuery] string? companyName)
         {
-            var employees = await _getSalesDatePredictionUseCase.ExecuteAsync();
-
-            return Ok(employees);
+            var result = await _getSalesDatePredictionUseCase.ExecuteAsync(companyName);
+            return Ok(result);
         }
     }
 }
