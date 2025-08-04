@@ -4,6 +4,6 @@ namespace Application.Ports
 {
     public interface ICustomersRepositorySqlServerPort
     {
-        Task<IEnumerable<CustomersReadSalesDatePredictionModel>> GetGetSalesDatePredictionAsync();
+        Task<IEnumerable<CustomersReadSalesDatePredictionModel>> GetSalesDatePredictionAsync(string? companyName = null);
     }
 }
