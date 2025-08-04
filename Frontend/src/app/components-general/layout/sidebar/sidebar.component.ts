@@ -16,11 +16,16 @@ export class SidebarComponent {
 
   menu = [
     {
-      title: 'Formulario',
-      key: 'formulario',
+      title: 'Customers',
+      key: 'customers',
       icon: 'storage',
       items: [
-        { title: 'Login', key: 'login', route: 'formulario/', icon: 'storage' },
+        {
+          title: 'Sales Date Prediction',
+          key: 'sales-date-prediction',
+          route: '',
+          icon: 'storage',
+        },
       ],
     },
   ];
