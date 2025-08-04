@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -13,9 +13,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ViewChild } from '@angular/core';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+
 import { CustomerOrdersModalComponent } from '../components/customer-orders-modal/customer-orders-modal.component';
 
 import { CustomersService } from '../services/salesDatePrediction.service';
@@ -61,7 +61,8 @@ export class SalesDatePredictionComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private service: CustomersService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
       search: [''],
@@ -105,9 +106,18 @@ export class SalesDatePredictionComponent implements OnInit {
   }
 
   openNewOrder(custId: string, customerName: string) {
-    this.dialog.open(NewOrderDialogComponent, {
+    const dialogRef = this.dialog.open(NewOrderDialogComponent, {
       width: '800px',
       data: { custId, customerName },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+      if (result) {
+        this.snackBar.open('Orden guardada correctamente', 'Cerrar', {
+          duration: 3000,
+        });
+      }
     });
   }
 }
