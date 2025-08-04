@@ -1,0 +1,17 @@
+mat-form-field {
+  max-width: 400px; /* o 100% si prefieres */
+}
+
+.soft-btn {
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 6px 12px;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+}
+
+.soft-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* fondo sutil al pasar el mouse */
+}
