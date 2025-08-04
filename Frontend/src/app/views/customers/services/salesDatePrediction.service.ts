@@ -12,10 +12,10 @@ import { DetailsOrder } from '../interfaces/DetailsOrder';
 export class CustomersService {
   constructor(private http: HttpClient) {}
 
-  GetAllCustomerSalesDatePrediction(): Observable<
-    CustomerSalesDatePrediction[]
-  > {
-    const urlConsulta = `${environment.urlInicial}${urlServices.customers}`;
+  GetAllCustomerSalesDatePrediction(
+    companyName?: string
+  ): Observable<CustomerSalesDatePrediction[]> {
+    const urlConsulta = `${environment.urlInicial}${urlServices.customers}/GetSalesDatePrediction?companyName=${companyName}`;
     return this.http.get<CustomerSalesDatePrediction[]>(urlConsulta);
   }
 

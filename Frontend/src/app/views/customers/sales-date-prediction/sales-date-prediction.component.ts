@@ -69,7 +69,7 @@ export class SalesDatePredictionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getDataCustomers();
+    this.getDataCustomers('');
   }
 
   ngAfterViewInit(): void {
@@ -77,11 +77,13 @@ export class SalesDatePredictionComponent implements OnInit {
     this.customers.sort = this.sort;
   }
 
-  getDataCustomers(): void {
-    this.service.GetAllCustomerSalesDatePrediction().subscribe((data) => {
-      this.customers.data = data;
-      this.loadingSearch = false;
-    });
+  getDataCustomers(companyName: string): void {
+    this.service
+      .GetAllCustomerSalesDatePrediction(companyName)
+      .subscribe((data) => {
+        this.customers.data = data;
+        this.loadingSearch = false;
+      });
   }
 
   applyFilter(filterValue: string) {
@@ -90,7 +92,9 @@ export class SalesDatePredictionComponent implements OnInit {
 
   onSearch(): void {
     const searchTerm = this.form.get('search')?.value;
-    this.applyFilter(searchTerm);
+    this.loadingSearch = true;
+    this.getDataCustomers(searchTerm);
+    this.loadingSearch = false;
   }
 
   openOrders(customerId: string, customerName: string) {
