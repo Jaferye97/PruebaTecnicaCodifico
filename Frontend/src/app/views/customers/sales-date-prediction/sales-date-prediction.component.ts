@@ -6,14 +6,14 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ViewChild, AfterViewInit } from '@angular/core';
+import { ViewChild } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 import { CustomerOrdersModalComponent } from '../components/customer-orders-modal/customer-orders-modal.component';
@@ -21,6 +21,7 @@ import { CustomerOrdersModalComponent } from '../components/customer-orders-moda
 import { CustomersService } from '../services/salesDatePrediction.service';
 
 import { CustomerSalesDatePrediction } from '../interfaces/CustomerSalesDatePrediction';
+import { NewOrderDialogComponent } from '../components/new-order-dialog/new-order-dialog.component';
 
 @Component({
   selector: 'app-sales-date-prediction',
@@ -96,6 +97,13 @@ export class SalesDatePredictionComponent implements OnInit {
     this.dialog.open(CustomerOrdersModalComponent, {
       width: '90%',
       data: { customerId, customerName },
+    });
+  }
+
+  openNewOrder(custId: string, customerName: string) {
+    this.dialog.open(NewOrderDialogComponent, {
+      width: '800px',
+      data: { custId, customerName },
     });
   }
 }

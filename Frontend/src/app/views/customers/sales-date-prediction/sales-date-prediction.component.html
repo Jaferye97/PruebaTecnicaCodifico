@@ -62,7 +62,12 @@
       >
         VIEW ORDERS
       </button>
-      <button class="soft-btn text-success fw-bold">NEW ORDER</button>
+      <button
+        class="soft-btn text-success fw-bold"
+        (click)="openNewOrder(element.custId, element.companyName)"
+      >
+        NEW ORDER
+      </button>
     </td>
   </ng-container>
 
