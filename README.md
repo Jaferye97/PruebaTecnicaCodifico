@@ -37,6 +37,10 @@ Este proyecto implementa una solución completa para la gestión de órdenes de 
 ## 🛠️ Estructura del Proyecto
 
 ```
+/BD
+└── 01. sp_GetSalesDatePrediction
+└── 02. sp_AddNewOrderWithDetail
+
 /Backend
 └── Application
 │   ├── Ports
@@ -71,9 +75,16 @@ Este proyecto implementa una solución completa para la gestión de órdenes de 
 
 ## 💡 Cómo Ejecutarlo
 
-### Backend (.NET)
+### 🗄️ Scripts de Base de Datos
 
-```Asegúrate de configurar la cadena de conexión en appsettings.json.```
+Antes de ejecutar el proyecto, asegúrate de crear los procedimientos almacenados ejecutando los siguientes scripts ubicados en la carpeta `/DB`:
+
+1. `01_sp_GetSalesDatePrediction.sql` – Predicción de la próxima orden de compra de un cliente.
+2. `02_sp_AddNewOrderWithDetail.sql` – Inserción de una nueva orden junto con su detalle.
+
+### ⚙️ Backend (.NET)
+
+> ⚠️ **Importante:** Asegúrate de configurar la cadena de conexión en appsettings.json.
 
 ```bash
 cd Backend/WebApi
@@ -81,7 +92,7 @@ dotnet restore
 dotnet run
 ```
 
-### Frontend (Angular)
+### 🖥️ Frontend (Angular)
 
 ```
 cd Frontend
@@ -111,3 +122,4 @@ ng serve
 📧 Mail: Andresjara0897@hotmail.com <br/>
 💼 GitHub: https://github.com/Jaferye97 <br/>
 🔗 LinkedIn: https://www.linkedin.com/in/yeimerjarafer/ <br/>
+
